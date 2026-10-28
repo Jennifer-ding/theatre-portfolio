@@ -27,10 +27,9 @@ export default function ProductionCollage({ production }) {
     };
   }, [open]);
   return <article className="experience-detail production-collage-detail">
+    <div className="production-editorial-meta"><span className="production-archive-label">PRODUCTION ARCHIVE / {String(['normal', 'marigolds', 'hamilton', 'lion-king'].indexOf(production.id) + 1).padStart(2, '0')}</span><div className="production-slide-meta"><p>{layout.date}</p><p>{layout.credits}</p></div></div>
     <div className={`production-slide slide-${production.id}`} aria-label={`${layout.title} — interactive portfolio composition`}>
-      <svg className="production-slide-lines" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"><path d="M40 170C-100 430 220 200 90 620S290 670 150 880M1520 0C1400 260 1650 300 1500 600S1600 800 1500 900"/></svg>
-      <h2 className="production-slide-title" aria-label={layout.title} style={textPlacement(layout.titlePos, layout.mobileTitle)}>{layout.lines.map((line, i) => <span key={i}>{line}</span>)}</h2>
-      <div className="production-slide-meta" style={textPlacement(layout.meta, layout.mobileMeta)}><p>{layout.date}</p><p>{layout.credits}</p></div>
+      <h2 className="production-slide-title" aria-label={layout.title} style={textPlacement(layout.titlePos, layout.mobileTitle)}>{layout.title}</h2>
       {layout.missing && <div className="production-photo-pending" style={placement(layout.missing, layout.mobileMissing)}><span>PHOTO MAPPING PENDING</span><p>Small ensemble inset beneath the title — awaiting confirmation.</p></div>}
       {layout.photos.map((image, index) => <button type="button" key={image.src} className={`production-slide-photo slide-photo-${index+1}`} style={placement(image.position, image.mobile)} aria-label={`Enlarge ${image.alt}`} aria-haspopup="dialog" onClick={event => { origin.current = event.currentTarget; setSelected(index); }}>
         <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy"/>

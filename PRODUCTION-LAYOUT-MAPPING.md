@@ -54,7 +54,7 @@ Date: November 23, 2025. Credits: Director / Actor.
 
 ## Layout boundaries
 
-Desktop uses individually measured percentage positions on a 16:9 canvas, with the slide's title hierarchy, color blocks, overlapping elements and date/credit placement. Mobile uses separate, per-production coordinates on a taller canvas, rather than an automatic grid. Images use `object-fit: contain` to retain all original content and proportions; where the PPT uses a crop, full-image fitting necessarily differs from that crop. Decorative backgrounds are CSS approximations because no original Canva background layers or font files were supplied. They are not recreated photographs.
+Desktop retains the individually measured photo positions on a 16:9 canvas. Mobile retains separate, per-production photo coordinates on a taller canvas, rather than an automatic grid. The surrounding presentation uses the site's existing deep-plum background, warm ivory serif titles and subtle lavender metadata above the collage. PPT color blocks, decorative lines and thick frames have been removed. Images use `object-fit: contain` with transparent surroundings to retain all original content and proportions; where the PPT uses a crop, full-image fitting necessarily differs from that crop.
 
 Editable layout data: `src/prototype/production-layouts.js`. Positions are explicit [left, top, width, height] percentages. Dates/credits here are confined to the detail views, preserving the existing cover cards exactly as requested.
 
