@@ -51,10 +51,24 @@ export function Imagination() {
 }
 
 export function Fortitude() {
-  // Preserve original caption numbers while hiding only the requested photo.
-  const volleyball = images.volleyball.map((photo, index) => ({ ...photo, caption: photo.caption || `Volleyball / ${String(index + 1).padStart(2, '0')}` })).filter(photo => !photo.src.endsWith('/volleyball-02大.jpeg'));
-  const teamwork = images.general.filter(photo => photo.src.includes('/teamwork-'));
-  const awards = images.general.filter(photo => !photo.src.includes('/teamwork-'));
+  // Photo identities visually verified against the requested subjects.
+  const volleyball = ['01', '05', '03'].map((number, index) => ({
+    ...images.volleyball.find(photo => photo.src.endsWith(`/volleyball-${number}大.jpeg`)),
+    caption: `Volleyball / ${String(index + 1).padStart(2, '0')}`
+  }));
+  const movedNames = ['teamwork-01大.jpeg', 'teamwork-02大.jpeg', 'teamwork-03大.jpeg'];
+  const teamwork = images.general.filter(photo => photo.src.includes('/teamwork-'))
+    .map((photo, index) => ({ ...photo, caption: photo.caption || `Teamwork / ${String(index + 1).padStart(2, '0')}` }))
+    .filter(photo => !movedNames.some(name => photo.src.endsWith(`/${name}`)));
+  const awards = [
+    ...movedNames.map((name, index) => ({
+      ...images.general.find(photo => photo.src.endsWith(`/${name}`)),
+      caption: `Achievement / ${String(index + 1).padStart(2, '0')}`
+    })),
+    ...images.general.filter(photo => !photo.src.includes('/teamwork-'))
+      .map((photo, index) => ({ ...photo, caption: photo.caption || `Achievements / ${String(index + 1).padStart(2, '0')}` }))
+      .filter(photo => !photo.src.endsWith('/award-01大.jpeg'))
+  ];
   return <div className="art-sport-chapter fortitude-chapter">
     <div className="two-column"><section className="copy-block"><h3>Volleyball</h3><p className="chapter-training">{training.volleyball}</p></section><section className="copy-block"><h3>Squash</h3><p className="chapter-training">{training.squash}</p></section></div>
     <section className="chapter-gallery-section" aria-label="Athletic photography"><h4>Volleyball photography</h4><ImageGallery photos={volleyball} label="Volleyball"/><h4>Squash photography</h4><ImageGallery photos={images.squash} label="Squash"/></section>
