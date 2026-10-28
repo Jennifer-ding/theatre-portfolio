@@ -1,0 +1,47 @@
+/* Friendship Act III slides only; complete originals remain visible in document flow. */
+.friendship-slides { margin-top: 15px; }
+.friendship-slide-intro { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(24px,4vw,55px); align-items: start; margin-bottom: 65px; }
+.friendship-slide-intro figure { margin: 0; min-width: 0; }
+.friendship-slide-button { display: block; width: 100%; border: 0; padding: 0; background: transparent; color: #cbb4d5; cursor: zoom-in; text-align: center; }
+.friendship-slide-button>img { display: block; width: 100%; height: auto; object-fit: contain; }
+.friendship-slide-button:focus-visible { outline: 2px solid #d8b665; outline-offset: 6px; }
+.friendship-slide-enlarge { display: block; font: 9px/1.8 'DM Sans',Arial,sans-serif; letter-spacing: .5px; padding: 12px 0 0; color: #b69ac4; }
+.friendship-scene-section { border-top: 1px solid var(--line); padding-top: 45px; }
+.friendship-scene-section>h3 { font-size: clamp(34px,3.5vw,48px); margin-bottom: 35px; }
+.friendship-scene-index { border-left: 1px solid #ac8ec65c; padding-left: 24px; margin-bottom: 65px; }
+.friendship-scene-index ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 45px; }
+.friendship-scene-index li { border-top: 1px solid #ac8ec62b; }
+.friendship-scene-index a { display: block; padding: 19px 0; color: #cdb8d7; font: 12px/1.8 'DM Sans',Arial,sans-serif; }
+.friendship-scene-index a>span { color: #a88abb; font-size: 10px; margin-right: 9px; }
+.friendship-scene-index a:hover { color: #eee5d5; }
+.friendship-scene-slides { max-width: 1100px; margin: 0 auto; }
+.friendship-scene-slide { margin: 0 0 65px; }
+.friendship-scene-slide:last-child { margin-bottom: 0; }
+.friendship-scene-slide h4 { font: 10px/1.8 'DM Sans',Arial,sans-serif; color: #bea4cb; text-transform: uppercase; letter-spacing: 1.6px; margin: 0 0 20px; scroll-margin-top: 30px; }
+.friendship-scene-slide h4:focus { outline: none; }
+.friendship-slide-lightbox { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; padding: 18px; background: #130d1aec; color: #eee5d5; }
+.friendship-slide-lightbox::backdrop { background: #0d0813; }
+.friendship-slide-lightbox[open] { display: grid; grid-template-rows: auto auto minmax(0,1fr) auto; gap: 12px; }
+.friendship-viewer-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; font-size: 12px; }
+.friendship-slide-lightbox button { min-height: 40px; min-width: 40px; padding: 9px 14px; background: #302438; color: #eee5d5; border: 1px solid #ac8ec666; font: 11px/1.5 Arial,sans-serif; cursor: pointer; }
+.friendship-slide-lightbox button:disabled { opacity: .4; cursor: default; }
+.friendship-slide-lightbox button:focus-visible, .friendship-viewer-viewport:focus-visible { outline: 2px solid #d8b665; outline-offset: 3px; }
+.friendship-viewer-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+.friendship-viewer-viewport { min-height: 0; overflow: auto; overscroll-behavior: contain; touch-action: pan-x pan-y pinch-zoom; }
+.friendship-viewer-viewport.is-zoomed { cursor: grab; }
+.friendship-viewer-viewport.is-zoomed:active { cursor: grabbing; }
+.friendship-viewer-canvas { width: 100%; height: 100%; display: grid; place-items: center; padding: 12px; box-sizing: border-box; }
+.friendship-viewer-canvas img { display: block; max-width: none; object-fit: contain; user-select: none; }
+.friendship-viewer-help { margin: 0; color: #bfa6cc; font-size: 10px; line-height: 1.7; text-align: center; }
+@media(max-width:650px) {
+  .friendship-slide-intro { grid-template-columns: minmax(0,1fr); gap: 30px; margin-bottom: 45px; }
+  .friendship-scene-index { padding-left: 16px; margin-bottom: 45px; }
+  .friendship-scene-index ol { grid-template-columns: minmax(0,1fr); }
+  .friendship-scene-index a { font-size: 11px; padding: 16px 0; }
+  .friendship-scene-slide { margin-bottom: 40px; }
+  .friendship-scene-slide h4 { font-size: 9px; letter-spacing: 1px; margin-bottom: 15px; }
+  .friendship-slide-lightbox { padding: 12px; }
+  .friendship-viewer-header { font-size: 10px; }
+  .friendship-viewer-help { font-size: 9px; }
+  .friendship-slide-lightbox button { padding-inline: 10px; }
+}

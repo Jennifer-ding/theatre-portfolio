@@ -6,6 +6,7 @@ import { ExperienceCards, ExperienceDetail } from './Experience';
 import { Imagination, Fortitude } from './ArtAndSport';
 import Journey from './Journey';
 import FriendshipEssay from './FriendshipEssay';
+import FriendshipSlides from './FriendshipSlides';
 const originals = productions.filter(p => p.original);
 const route = (act, id) => `#/act/${act}${id ? '/' + id : ''}`;
 function Placeholder({ label, text, className = '' }) { return <div className={`placeholder ${className}`}><span className="placeholder-tag">Material to be supplied</span><p>{text || label}</p></div>; }
@@ -19,9 +20,11 @@ function ProductionPage({ p, notebook }) { return <>
   <div className="production-title"><p className="eyebrow">{notebook ? 'Director’s notebook' : 'A completely original play'} / {p.id === 'a-wan' ? '01' : '02'}</p><h2>{p.title}</h2><p>{notebook ? 'From first impulse to final reflection.' : 'The story, the stage, the archive.'}</p></div>
   <a className="primary-button" href={route(notebook ? 'III' : 'IV', p.id)}>{notebook ? 'Return to the Production' : 'Explore My Directorial Approach'} <span>↗</span></a>
   {notebook ? (p.id === 'friendship' ? <FriendshipEssay/> : <div className="notebook-layout"><aside className="contents"><p className="eyebrow">Notebook index</p>{Object.entries(noteLabels).map(([key, title], i) => <a href={`#${'/act/IV/' + p.id}`} key={key} onClick={e => {e.preventDefault(); document.getElementById(key)?.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});}}>{String(i+1).padStart(2,'0')} / {title}</a>)}</aside><div>{Object.entries(noteLabels).map(([key,title],i) => <div id={key} key={key} className="notebook-entry"><span className="entry-no">0{i+1}</span><Copy title={title} value={p.notebook[key]}/></div>)}{p.id === 'friendship' && <section className="copy-block"><h3>Comparative exploration of related theatre works</h3>{p.comparisons.length ? p.comparisons.map((c,i) => <article key={i}><h4>{c.title}</h4><p>{c.text}</p><p className="muted">Supplied source: {c.source}</p></article>) : <Placeholder label="[Reserved for comparisons supported by Jennifer’s supplied material. No works or comparisons have been invented.]"/>}</section>}</div></div>) : <>
+  {p.id === 'friendship' ? <FriendshipSlides/> : <>
   <div className={p.id === 'friendship' ? 'two-column friendship-narrative-intro' : 'two-column'}><Copy title="Synopsis" value={p.synopsis}/><Copy title="Creative motivation" value={p.motivation}/></div>
   <section className="archive-section"><div className="section-top"><p className="eyebrow">01 / The unfolding</p><h3>Scene by scene</h3></div>{p.scenes.length ? p.scenes.map((scene,i) => <Copy key={i} title={scene.title} value={scene.summary}/>) : <Placeholder label="[Scene-by-scene summaries pending. Add one entry per actual scene; scene count and narrative have not been assumed.]"/>}</section>
   <section className="archive-section"><div className="section-top"><p className="eyebrow">02 / The living archive</p><h3>On the stage</h3></div><Gallery photos={p.photos}/></section>
+  </>}
   <section className="script-block"><div><p className="eyebrow">03 / On the page</p><h3>The full script</h3><p>Original manuscript · PDF archive</p></div>{p.script ? <a className="primary-button" href={p.script} target="_blank" rel="noreferrer">Read full script PDF ↗</a> : <Placeholder label="[Full script PDF pending — no manuscript supplied]"/>}</section>
   <div className="two-column media-grid"><Media title="Full performance" src={p.fullVideo}/><Media title="Edited short performance" src={p.shortVideo} duration={p.duration}/></div>
   <div className="closing-link"><p className="eyebrow">Continue behind the curtain</p><h3>How did this story find its stage?</h3><a className="primary-button" href={route('IV',p.id)}>Explore My Directorial Approach <span>↗</span></a></div>
