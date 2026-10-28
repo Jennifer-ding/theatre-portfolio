@@ -24,7 +24,11 @@ export default function Reimagination() {
   return <article className="reimagination-chapter">
     <section className="reimagination-essay" aria-labelledby="reimagination-dream-heading">
       <h2 id="reimagination-dream-heading">{copy.heading}</h2>
-      {copy.paragraphs.map((text, index) => <p key={index} className={text === '**WHAT IF I COMBINED THE TWO???**' ? 'reimagination-turning-point' : undefined}><Emphasis text={text}/></p>)}
+      {copy.paragraphs.map((text, index) => {
+        if (index === 2) return null;
+        if (index === 1) return <div className="reimagination-dreams" key="two-dreams">{['🎭', '🌍'].map((emoji, dreamIndex) => <div className="reimagination-dream" key={emoji}><span className="reimagination-dream-emoji" aria-hidden="true">{emoji}</span><p><Emphasis text={copy.paragraphs[dreamIndex + 1]}/></p></div>)}</div>;
+        return <p key={index} className={text === '**WHAT IF I COMBINED THE TWO???**' ? 'reimagination-turning-point' : undefined}><Emphasis text={text}/></p>;
+      })}
     </section>
     <section className="reimagination-collection" aria-labelledby="reimagination-collection-heading">
       <h2 id="reimagination-collection-heading">{copy.collectionTitle}</h2>
