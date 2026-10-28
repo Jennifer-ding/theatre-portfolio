@@ -1,0 +1,15 @@
+/* A WAN cover and direct navigation only; the approved shared reader stays unchanged. */
+.friendship-script--awan .friendship-script-closed,
+.friendship-script--awan .friendship-script-hardcover {
+  background-image: repeating-linear-gradient(15deg,#ffffff02 0 1px,transparent 1px 4px),linear-gradient(100deg,#321019,#682634 12%,#451722 15%,#57202e 95%,#30101a);
+  border-color: #b48c8266;
+  color: #eee5d5;
+}
+.friendship-script--awan .friendship-script-closed { border-left-color: #351019; aspect-ratio: 595.45/841.7; box-shadow: 10px 15px 30px #100a1680,4px 3px 0 #c7bbaa,7px 5px 0 #351019; }
+.friendship-script--awan .friendship-script-closed strong { font-size: clamp(36px,5vw,58px); letter-spacing: .04em; }
+.friendship-script--awan .friendship-script-closed .awan-script-subtitle,
+.friendship-script--awan .friendship-script-hardcover .awan-script-subtitle { font: 24px/1.4 Georgia,'Songti SC',serif; letter-spacing: .18em; }
+.friendship-script--awan .friendship-script-page>img { object-fit: contain; }
+.awan-script-jump label { font-size: 12px; color: #d7c6df; }
+.awan-script-jump input { width: 70px; min-height: 44px; border: 1px solid #ac8ec666; padding: 10px; background: #21182c; color: #eee5d5; font: inherit; font-size: 14px; }
+.awan-script-jump input:focus-visible { outline: 2px solid #d8b665; outline-offset: 4px; }

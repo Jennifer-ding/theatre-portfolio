@@ -4,7 +4,7 @@ import './friendship-flipbook.css';
 const PDF_URL = '/images/documents/friendship-full-script.pdf';
 const TITLE = 'The Things I Called Friendship';
 
-function ZoomReader({ pdf, initialPage, onClose }) {
+function ZoomReader({ pdf, pdfUrl, initialPage, onClose }) {
   const dialog = useRef(null);
   const canvas = useRef(null);
   const view = useRef(null);
@@ -48,11 +48,11 @@ function ZoomReader({ pdf, initialPage, onClose }) {
     <header><span>Original script · Page {page} of {pdf.numPages}</span><button onPointerUp={event => { if (event.pointerType === 'touch') { event.preventDefault(); onClose(); } }} onClick={onClose}>Close ×</button></header>
     <div className="friendship-script-controls"><button aria-label="Previous enlarged page" disabled={page === 1} onClick={() => turn(-1)}>←</button><button aria-label="Zoom out" disabled={zoom <= 1} onClick={() => setZoom(z => Math.max(1, z - .5))}>−</button><button onClick={() => setZoom(1)}>Fit width</button><span>{Math.round(zoom * 100)}%</span><button aria-label="Zoom in" disabled={zoom >= 3} onClick={() => setZoom(z => Math.min(3, z + .5))}>+</button><button aria-label="Next enlarged page" disabled={page === pdf.numPages} onClick={() => turn(1)}>→</button></div>
     <div className="friendship-script-zoom-viewport" ref={view} tabIndex="0" aria-label="Original PDF page; scroll or swipe to pan"><canvas ref={canvas} role="img" aria-label={`Original script page ${page}`}/>{error && <p role="alert">{error}</p>}</div>
-    <a href={PDF_URL} target="_blank" rel="noreferrer">Open Original PDF ↗</a>
+    <a href={pdfUrl} target="_blank" rel="noreferrer">Open Original PDF ↗</a>
   </dialog>;
 }
 
-export default function FriendshipFlipbook() {
+export function ScriptFlipbook({ pdfUrl = PDF_URL, title = TITLE, subtitle = '', theme = '', directNavigation = false }) {
   const root = useRef(null);
   const host = useRef(null);
   const flip = useRef(null);
@@ -65,6 +65,7 @@ export default function FriendshipFlipbook() {
   const [portrait, setPortrait] = useState(false);
   const [zoomPage, setZoomPage] = useState(null);
   const [expanded, setExpanded] = useState(false);
+  const [destination, setDestination] = useState('1');
 
   useEffect(() => {
     if (!started) return;
@@ -82,21 +83,28 @@ export default function FriendshipFlipbook() {
       ]);
       if (cancelled) return;
       GlobalWorkerOptions.workerSrc = worker.default;
-      loading = getDocument({ url: PDF_URL });
+      loading = getDocument({ url: pdfUrl });
       const document = await loading.promise;
       if (cancelled) return;
       pdf.current = document;
       setCount(document.numPages);
+      const firstPage = await document.getPage(1);
+      if (cancelled) return;
+      const originalSize = firstPage.getViewport({ scale: 1 });
+      const pageRatio = originalSize.height / originalSize.width;
       const elements = [];
+      const titleText = title;
       const cover = (back = false) => {
         const el = window.document.createElement('div');
         el.className = 'friendship-script-page friendship-script-hardcover';
         el.dataset.density = 'hard';
         const inner = window.document.createElement('div');
         const label = window.document.createElement('span'); label.textContent = back ? 'END OF SCRIPT' : 'AN ORIGINAL PLAY';
-        const title = window.document.createElement('h4'); title.textContent = TITLE;
+        const title = window.document.createElement('h4'); title.textContent = titleText;
         const author = window.document.createElement('p'); author.textContent = 'Jennifer Wanjia Ding';
-        inner.append(label, title, author); el.append(inner); return el;
+        inner.append(label, title);
+        if (subtitle) { const sub = window.document.createElement('span'); sub.className = 'awan-script-subtitle'; sub.textContent = subtitle; inner.append(sub); }
+        inner.append(author); el.append(inner); return el;
       };
       elements.push(cover());
       // Render the exact PDF pages once, sequentially, to avoid simultaneous canvas memory spikes.
@@ -126,8 +134,8 @@ export default function FriendshipFlipbook() {
       elements.push(cover(true));
       bookHost.append(...elements);
       instance = new PageFlip(bookHost, {
-        width: 400, height: 400 * 792 / 612, size: 'stretch', minWidth: 320, maxWidth: 470,
-        minHeight: 140 * 792 / 612, maxHeight: 470 * 792 / 612,
+        width: 400, height: 400 * pageRatio, size: 'stretch', minWidth: 320, maxWidth: 470,
+        minHeight: 140 * pageRatio, maxHeight: 470 * pageRatio,
         showCover: true, usePortrait: true, drawShadow: true, maxShadowOpacity: .25,
         flippingTime: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 850,
         mobileScrollSupport: false, swipeDistance: 25, showPageCorners: true
@@ -142,7 +150,7 @@ export default function FriendshipFlipbook() {
       requestAnimationFrame(() => { if (!cancelled) instance.flipNext(); });
     })().catch(error => { if (!cancelled) { console.error('Script reader:', error); setStatus('The reader could not load. You can still read every page using Open Original PDF.'); } });
     return () => { cancelled = true; renderer?.cancel(); instance?.destroy(); bookHost.remove(); flip.current = null; pdf.current = null; loading?.destroy(); pageUrls.forEach(url => URL.revokeObjectURL(url)); };
-  }, [started]);
+  }, [started, pdfUrl, title, subtitle]);
 
   const fullscreen = async () => {
     try {
@@ -152,17 +160,25 @@ export default function FriendshipFlipbook() {
     } catch { setExpanded(value => !value); }
   };
   const pageLabel = current === 0 ? 'Front cover' : current > count ? 'Back cover' : `Page${!portrait && current < count ? 's' : ''} ${current}${!portrait && current < count ? `–${current + 1}` : ''} of ${count}`;
-  return <section className={`friendship-script ${expanded ? 'is-expanded' : ''}`} ref={root} aria-labelledby="friendship-script-heading" onKeyDown={event => {
+  return <section className={`friendship-script ${theme ? `friendship-script--${theme}` : ''} ${expanded ? 'is-expanded' : ''}`} ref={root} aria-labelledby="friendship-script-heading" onKeyDown={event => {
     if (zoomPage !== null) return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); event.key === 'ArrowLeft' ? flip.current?.flipPrev() : flip.current?.flipNext(); }
     if (event.key === 'Escape') setExpanded(false);
   }}>
     <div className="friendship-script-heading"><p className="eyebrow">03 / On the page</p><h3 id="friendship-script-heading">The full script</h3><p>Original manuscript · PDF archive</p></div>
-    {!started && <button className="friendship-script-closed" onClick={() => setStarted(true)} aria-label="Open The Things I Called Friendship script flipbook"><span>AN ORIGINAL PLAY</span><strong>The Things<br/>I Called<br/><em>Friendship</em></strong><span>Jennifer Wanjia Ding</span><small>Open the book ↗</small></button>}
+    {!started && <button className="friendship-script-closed" onClick={() => setStarted(true)} aria-label={`Open ${title} script flipbook`}><span>AN ORIGINAL PLAY</span><strong>{title === TITLE ? <>The Things<br/>I Called<br/><em>Friendship</em></> : title}</strong>{subtitle && <span className="awan-script-subtitle">{subtitle}</span>}<span>Jennifer Wanjia Ding</span><small>Open the book ↗</small></button>}
     <p className="friendship-script-status" role="status" aria-live="polite">{status}</p>
     {started && <div className={`friendship-script-stage ${ready ? 'is-ready' : ''}`} ref={host} tabIndex="0" aria-label="Interactive script book. Use arrow keys, click a page edge, drag, or swipe to turn pages."/>}
     {ready && <><div className="friendship-script-controls"><button onClick={() => flip.current?.flipPrev()} disabled={current === 0} aria-label="Previous script page">← Previous</button><span role="status" aria-live="polite">{pageLabel}</span><button onClick={() => flip.current?.flipNext()} disabled={current > count} aria-label="Next script page">Next →</button></div><div className="friendship-script-controls"><button onClick={() => setZoomPage(Math.max(1, Math.min(count, current)))}>Zoom / Read closely</button><button onClick={fullscreen}>Fullscreen</button>{expanded && <button onClick={() => setExpanded(false)}>Exit fullscreen</button>}</div><p className="friendship-script-help">Click a page edge, drag, or swipe to turn. Use arrow keys when the book is focused.</p></>}
-    <a className="friendship-script-original" href={PDF_URL} target="_blank" rel="noreferrer">Open Original PDF ↗</a>
-    {zoomPage !== null && <ZoomReader pdf={pdf.current} initialPage={zoomPage} onClose={() => setZoomPage(null)}/>}
+    {ready && directNavigation && <form className="friendship-script-controls awan-script-jump" onSubmit={event => {
+      event.preventDefault();
+      const number = Number(destination);
+      if (Number.isInteger(number) && number >= 1 && number <= count) flip.current?.flip(number);
+    }}><label htmlFor="awan-script-page">Go to page</label><input id="awan-script-page" type="number" min="1" max={count} step="1" required value={destination} onChange={event => setDestination(event.target.value)}/><button type="submit">Go</button></form>}
+    <a className="friendship-script-original" href={pdfUrl} target="_blank" rel="noreferrer">Open Original PDF ↗</a>
+    {zoomPage !== null && <ZoomReader pdfUrl={pdfUrl} pdf={pdf.current} initialPage={zoomPage} onClose={() => setZoomPage(null)}/>}
   </section>;
 }
+
+// Preserve the approved Friendship reader with its original defaults.
+export default function FriendshipFlipbook() { return <ScriptFlipbook/>; }
