@@ -1,0 +1,25 @@
+/* Only Act VIII: a continuously visible essay and an unfinished final act. */
+.reimagination-chapter { padding-top: 5px; }
+.reimagination-essay { max-width: 740px; margin: 0 auto; }
+.reimagination-essay h2 { font: 400 clamp(34px,4.3vw,58px)/1.16 'Cormorant Garamond',Georgia,serif; color: #eee5d5; margin: 0 0 45px; overflow-wrap: break-word; }
+.reimagination-essay p { font: 400 16px/1.95 'DM Sans',Arial,sans-serif; color: #d5c8da; margin: 0 0 26px; overflow-wrap: break-word; }
+.reimagination-essay strong { color: #eee5d5; font-weight: 600; }
+.reimagination-essay .reimagination-turning-point { font: 400 clamp(24px,2.8vw,34px)/1.4 'Cormorant Garamond',Georgia,serif; margin-block: 40px; }
+.reimagination-turning-point strong { font-weight: 500; }
+.reimagination-collection { max-width: 850px; margin: 70px auto 0; padding: 65px 0 0; border-top: 1px solid var(--line); text-align: center; }
+.reimagination-collection h2 { font: 400 clamp(44px,6vw,70px)/1.6 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif; margin: 0 0 25px; }
+.reimagination-collection p { font: italic 24px/1.6 'Cormorant Garamond',Georgia,serif; color: #c8afd5; margin: 0 0 18px; }
+.reimagination-collection p:last-child { font-size: 21px; color: #d5c8da; margin-bottom: 0; }
+.reimagination-final { max-width: 850px; margin: 85px auto 30px; padding-block: 25px; text-align: center; font: italic clamp(25px,3vw,36px)/1.5 'Cormorant Garamond',Georgia,serif; color: #eee5d5; }
+.reimagination-final.is-revealed { animation: reimagination-last-line .8s ease-out both; }
+@keyframes reimagination-last-line { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media(max-width:650px) {
+  .reimagination-essay h2 { margin-bottom: 30px; }
+  .reimagination-essay p { font-size: 15px; line-height: 1.9; margin-bottom: 23px; }
+  .reimagination-essay .reimagination-turning-point { font-size: 25px; margin-block: 32px; }
+  .reimagination-collection { margin-top: 45px; padding-top: 40px; }
+  .reimagination-collection p { font-size: 22px; }
+  .reimagination-collection p:last-child { font-size: 20px; }
+  .reimagination-final { margin-top: 50px; padding-block: 18px; }
+}
+@media(prefers-reduced-motion:reduce) { .reimagination-final.is-revealed { animation: none; } }
