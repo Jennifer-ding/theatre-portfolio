@@ -1,0 +1,28 @@
+/* Act VII only; other chapters and global typography are unchanged. */
+.page .act-heading>p.essence-subtitle { max-width: none; font: italic clamp(20px,2.3vw,28px)/1.5 'Cormorant Garamond',Georgia,serif; color: #d1bed9; }
+.essence-letters { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: clamp(22px,3vw,45px); align-items: start; }
+.essence-letter { min-width: 0; }
+.essence-photo { display: block; width: 100%; border: 0; border-bottom: 1px solid var(--line); padding: 0 0 13px; background: none; color: #cbb6d5; text-align: left; cursor: zoom-in; }
+.essence-photo img { width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border: 1px solid #cab5d32b; }
+.essence-photo>span { display: block; margin-top: 12px; font: 9px/1.8 'DM Sans',Arial,sans-serif; letter-spacing: .5px; }
+.essence-decorative-letter { display: block; font: 400 clamp(65px,7vw,100px)/1 'Cormorant Garamond',Georgia,serif; color: #c5a8d3; margin: 22px 0 12px; }
+.essence-letter h2 { font: 400 24px/1.35 'Cormorant Garamond',Georgia,serif; color: #eee5d5; margin: 0 0 22px; overflow-wrap: break-word; }
+.essence-signature { font: italic 23px/1.45 'Cormorant Garamond',Georgia,serif; color: #eee5d5; margin: 0 0 22px; overflow-wrap: break-word; }
+.essence-read-more { background: none; border: 0; border-bottom: 1px solid #ac8ec66b; padding: 10px 0; min-height: 44px; color: #d0b9dc; font: 11px/1.8 'DM Sans',Arial,sans-serif; cursor: pointer; }
+.essence-photo:hover, .essence-read-more:hover { color: #eee5d5; }
+.essence-chapter button:focus-visible, .essence-chapter a:focus-visible { outline: 2px solid #d8b665; outline-offset: 5px; }
+.essence-writing { display: grid; grid-template-rows: 0fr; visibility: hidden; opacity: 0; transition: grid-template-rows .35s ease,opacity .25s ease,visibility .35s; }
+.essence-writing.is-expanded { grid-template-rows: 1fr; visibility: visible; opacity: 1; }
+.essence-writing>div { min-height: 0; overflow: hidden; }
+.essence-writing p { font: 400 14px/1.95 'DM Sans',Arial,sans-serif; color: #d5c8da; margin: 22px 0 0; overflow-wrap: break-word; }
+.essence-closing { text-align: center; font: italic clamp(23px,2.8vw,32px)/1.5 'Cormorant Garamond',Georgia,serif; color: #d9c7e1; border-top: 1px solid var(--line); padding-top: 48px; margin: 65px auto 0; max-width: 850px; }
+.essence-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.essence-lightbox { width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; margin: 0; padding: 20px; border: 0; background: #100b16f5; color: #eee5d5; }
+.essence-lightbox::backdrop { background: #0a060fdd; }
+.essence-lightbox[open] { display: grid; grid-template-rows: auto minmax(0,1fr) auto; gap: 14px; }
+.essence-lightbox>button { justify-self: end; min-height: 44px; padding: 10px 18px; border: 1px solid #ac8ec666; background: #302338; color: #eee5d5; cursor: pointer; }
+.essence-lightbox>img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.essence-lightbox>a { justify-self: center; font-size: 11px; padding: 8px; }
+@media(max-width:1100px) { .essence-letters { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 55px 35px; } }
+@media(max-width:600px) { .essence-letters { grid-template-columns: minmax(0,1fr); gap: 50px; } .essence-decorative-letter { font-size: 80px; } .essence-letter h2 { font-size: 27px; } .essence-signature { font-size: 26px; } .essence-writing p { font-size: 15px; } .essence-lightbox { padding: 12px; } }
+@media(prefers-reduced-motion:reduce) { .essence-writing { transition: none; } }
