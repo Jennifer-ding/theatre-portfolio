@@ -1,0 +1,36 @@
+/* Friendship's Act IV essay only: all text is visible in normal document flow. */
+.friendship-essay { margin-top: 15px; }
+.friendship-essay-frontmatter { margin: 0 0 50px; padding: 26px 0; border-block: 1px solid var(--line); }
+.friendship-essay-author { font: 11px/1.8 'DM Sans',Arial,sans-serif; letter-spacing: 1.5px; color: #bda5c9; margin: 0 0 12px; }
+.friendship-essay-document-title { font: italic 26px/1.4 'Cormorant Garamond',Georgia,serif; color: #ded0e3; margin: 0; max-width: 750px; }
+.friendship-essay-layout { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: clamp(35px,6vw,90px); align-items: start; }
+.friendship-essay-index { position: sticky; top: 28px; padding-left: 20px; border-left: 1px solid var(--line); }
+.friendship-essay-index>p { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #b89bc4; margin: 0 0 20px; }
+.friendship-essay-index ol { margin: 0; padding: 0; list-style: none; counter-reset: essay; }
+.friendship-essay-index li { counter-increment: essay; border-top: 1px solid #cab5d31c; }
+.friendship-essay-index a { display: block; padding: 13px 0; font-size: 11px; line-height: 1.8; color: #c7b2d0; }
+.friendship-essay-index a::before { content: '0' counter(essay) ' / '; color: #a88ab8; font-size: 9px; }
+.friendship-essay-index a:hover { color: #eee5d5; }
+.friendship-essay-sections { min-width: 0; max-width: 740px; }
+.friendship-essay-chapter { padding: 0 0 52px; margin: 0 0 50px; border-bottom: 1px solid var(--line); }
+.friendship-essay-chapter:last-child { margin-bottom: 0; }
+.friendship-essay-chapter-number { display: block; font: italic 23px/1.4 'Cormorant Garamond',Georgia,serif; color: #ac8ec6; margin-bottom: 14px; }
+.friendship-essay-chapter h3 { font: 400 clamp(34px,3.5vw,48px)/1.12 'Cormorant Garamond',Georgia,serif; color: #eee5d5; letter-spacing: -.4px; margin: 0 0 30px; scroll-margin-top: 28px; }
+.friendship-essay-chapter h3:focus { outline: none; }
+.friendship-essay-chapter p { font: 400 16px/1.95 'DM Sans',Arial,sans-serif; color: #d5c8da; margin: 0 0 25px; white-space: pre-wrap; overflow-wrap: break-word; }
+.friendship-essay-chapter p:last-child { margin-bottom: 0; }
+@media(max-width:850px) {
+  .friendship-essay-layout { grid-template-columns: minmax(0,1fr); gap: 45px; }
+  .friendship-essay-index { position: static; }
+  .friendship-essay-index ol { display: grid; grid-template-columns: 1fr 1fr; column-gap: 25px; }
+  .friendship-essay-index a { min-height: 44px; }
+  .friendship-essay-sections { max-width: 740px; }
+}
+@media(max-width:500px) {
+  .friendship-essay-frontmatter { margin-bottom: 35px; }
+  .friendship-essay-document-title { font-size: 23px; }
+  .friendship-essay-index ol { grid-template-columns: minmax(0,1fr); }
+  .friendship-essay-chapter { padding-bottom: 35px; margin-bottom: 35px; }
+  .friendship-essay-chapter h3 { font-size: 34px; margin-bottom: 24px; }
+  .friendship-essay-chapter p { font-size: 15px; line-height: 1.9; }
+}
