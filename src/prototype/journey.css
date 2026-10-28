@@ -1,0 +1,29 @@
+/* Journey-only editorial accordion. */
+.journey-accordion { border-top: 1px solid var(--line); }
+.journey-entry { border-bottom: 1px solid var(--line); transition: background .3s; }
+.journey-entry.is-expanded { background: #ac8ec60a; }
+.journey-entry-heading { margin: 0; font-size: inherit; letter-spacing: normal; white-space: normal; }
+.journey-entry-heading>button { display: grid; grid-template-columns: 45px minmax(0,1fr) 30px; gap: 24px; align-items: center; padding: 30px 24px; width: 100%; border: 0; text-align: left; background: transparent; color: var(--cream); cursor: pointer; }
+.journey-entry-heading>button:hover { background: #ac8ec608; }
+.journey-entry-heading>button:focus-visible { outline: 2px solid #d8b665; outline-offset: -3px; }
+.journey-entry-number { font: italic 24px 'Cormorant Garamond',Georgia,serif; color: #ac8ec6; align-self: start; padding-top: 5px; }
+.journey-entry-title { display: block; font: 400 36px/1.15 'Cormorant Garamond',Georgia,serif; }
+.journey-entry-preview { display: block; font: 11px/1.8 'DM Sans',Arial,sans-serif; color: #bfaec8; margin-top: 10px; }
+.journey-entry-symbol { font: 25px/1 Georgia,serif; color: #cdb3dc; transition: transform .35s; text-align: center; }
+.journey-entry.is-expanded .journey-entry-symbol { transform: rotate(45deg); }
+.journey-entry-panel { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s ease, opacity .3s ease; }
+.journey-entry.is-expanded .journey-entry-panel { grid-template-rows: 1fr; opacity: 1; }
+.journey-entry-clip { min-height: 0; overflow: hidden; }
+.journey-entry-text { padding: 0 78px 35px 93px; }
+.journey-archive-label { display: block; font: 8px/1.8 monospace; letter-spacing: 1.5px; color: #ac8ec6; border-top: 1px solid #b89bc32b; padding-top: 25px; }
+.journey-entry-text p { white-space: pre-line; margin: 16px 0 0; max-width: 740px; font-size: 14px; line-height: 1.95; color: #d4c7d7; }
+@media(max-width:650px) {
+  .journey-entry-heading>button { grid-template-columns: 24px minmax(0,1fr) 20px; gap: 12px; padding: 25px 10px; }
+  .journey-entry-title { font-size: 28px; }
+  .journey-entry-number { font-size: 20px; padding-top: 3px; }
+  .journey-entry-preview { font-size: 10px; }
+  .journey-entry-symbol { font-size: 23px; }
+  .journey-entry-text { padding: 0 20px 28px 46px; }
+  .journey-entry-text p { font-size: 13px; }
+}
+@media(prefers-reduced-motion:reduce) { .journey-accordion *, .journey-accordion { transition: none!important; animation: none!important; } }
