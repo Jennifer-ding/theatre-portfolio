@@ -1,0 +1,24 @@
+/* Scoped to Act II only. Cover height and shared grid breakpoints are retained. */
+.experience-card { position: relative; }
+.experience-cover { background: #302438; }
+.experience-cover::before { content: none; }
+.experience-cover-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.experience-cover-shade { position: absolute; inset: 0; background: linear-gradient(180deg, #21132b40, #21132b99 70%, #21132bd9); pointer-events: none; }
+.experience-cover .poster-no, .experience-cover .poster-title, .experience-cover .poster-label { position: relative; color: #f2e9df; }
+.experience-cover .poster-title { text-shadow: 0 2px 12px #140b1dcc; }
+.experience-photo-placeholder { position: absolute; inset: 0; padding: 58px 25px 25px; background: repeating-linear-gradient(135deg, #b69bc308 0 1px, transparent 1px 14px), #34283e; }
+.experience-card-link::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+.experience-card:hover .experience-cover-image, .experience-card:focus-within .experience-cover-image { transform: scale(1.035); }
+.experience-card:focus-within { outline: 2px solid #d8b665; outline-offset: 5px; }
+.experience-card .card-copy { display: flex; flex-direction: column; flex: 1; }
+.experience-card { display: flex; flex-direction: column; }
+.experience-card .arrow-link { margin-top: auto; }
+.experience-card .credit:last-of-type { margin-bottom: 22px; }
+.experience-detail>h2 { font-size: clamp(36px, 5vw, 70px); line-height: 1.1; overflow-wrap: anywhere; }
+.experience-detail dl { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0 45px; }
+.experience-detail dt { font-size: 10px; letter-spacing: 1px; color: var(--purple); margin-bottom: 12px; }
+.experience-detail dd { margin: 0; font-size: 13px; line-height: 1.8; white-space: pre-line; }
+.experience-detail .primary-button { margin-top: 40px; }
+@media(max-width:650px) { .experience-detail dl { grid-template-columns: 1fr; gap: 25px; } }
+@media(prefers-reduced-motion:reduce) { .experience-cover-image { transition: none; } .experience-card:hover .experience-cover-image, .experience-card:focus-within .experience-cover-image { transform: none; } }
+.experience-detail ~ .act-pagination { display: none; }

@@ -1,5 +1,8 @@
 // Eight Acts prototype content. Empty strings/arrays are intentional placeholders.
 // Enter only Jennifer's approved material. Photos: { src: '/images/file.jpg', alt: 'description' }.
+// Act II: the first entry in each production’s photos array is its card cover.
+// Add only verified photos of that production; do not reuse the homepage collage.
+// Empty date, credits and photos values intentionally show editable placeholders.
 // PDF and videos: local public-file paths or HTTPS URLs to the actual media files.
 // Video URLs must be playable media files, not YouTube/Vimeo watch-page links.
 export const acts = [
