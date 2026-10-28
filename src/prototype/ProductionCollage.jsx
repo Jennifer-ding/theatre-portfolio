@@ -30,7 +30,6 @@ export default function ProductionCollage({ production }) {
     <div className="production-editorial-meta"><span className="production-archive-label">PRODUCTION ARCHIVE / {String(['normal', 'marigolds', 'hamilton', 'lion-king'].indexOf(production.id) + 1).padStart(2, '0')}</span><div className="production-slide-meta"><p>{layout.date}</p><p>{layout.credits}</p></div></div>
     <div className={`production-slide slide-${production.id}`} aria-label={`${layout.title} — interactive portfolio composition`}>
       <h2 className="production-slide-title" aria-label={layout.title} style={textPlacement(layout.titlePos, layout.mobileTitle)}>{layout.title}</h2>
-      {layout.missing && <div className="production-photo-pending" style={placement(layout.missing, layout.mobileMissing)}><span>PHOTO MAPPING PENDING</span><p>Small ensemble inset beneath the title — awaiting confirmation.</p></div>}
       {layout.photos.map((image, index) => <button type="button" key={image.src} className={`production-slide-photo slide-photo-${index+1}`} style={placement(image.position, image.mobile)} aria-label={`Enlarge ${image.alt}`} aria-haspopup="dialog" onClick={event => { origin.current = event.currentTarget; setSelected(index); }}>
         <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy"/>
       </button>)}

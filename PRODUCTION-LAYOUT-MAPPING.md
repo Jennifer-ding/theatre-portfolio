@@ -36,7 +36,7 @@ Folder: `public/images/experience/hamilton/`
 - `hamilton-01大.jpeg`: lower left — silhouettes against Hamilton backdrop.
 - `hamilton-05大.jpeg`: lower center — standing ensemble raising glasses.
 - `hamilton-04大.jpeg`: tall lower right — red coat and microphone.
-- **Mapping pending:** small ensemble inset under the title on the left. The screenshot contains six slots but this folder contains five files. Its subject is too small in the supplied screenshot to establish whether it repeats an uploaded ensemble photo or needs another original. A labeled placeholder is retained; no photograph is arbitrarily substituted.
+- The unconfirmed small ensemble inset beneath the title is omitted, as requested. No replacement photograph or placeholder is displayed.
 
 Date: December 19, 2025. Credits: Director / Actor.
 
@@ -54,7 +54,7 @@ Date: November 23, 2025. Credits: Director / Actor.
 
 ## Layout boundaries
 
-Desktop retains the individually measured photo positions on a 16:9 canvas. Mobile retains separate, per-production photo coordinates on a taller canvas, rather than an automatic grid. The surrounding presentation uses the site's existing deep-plum background, warm ivory serif titles and subtle lavender metadata above the collage. PPT color blocks, decorative lines and thick frames have been removed. Images use `object-fit: contain` with transparent surroundings to retain all original content and proportions; where the PPT uses a crop, full-image fitting necessarily differs from that crop.
+Desktop retains the individually measured photo positions on a 16:9 canvas for Normal, Hamilton and Lion King. Gamma Rays uses a taller 16:11 composition with three separate photo areas and clear gaps. Mobile uses per-production coordinates; Gamma Rays has a 2:3 canvas with no overlapping photos. These remain bespoke compositions rather than automatic grids. The surrounding presentation uses the site's existing deep-plum background, warm ivory serif titles and subtle lavender metadata above the collage. PPT color blocks, decorative lines and thick frames have been removed. Images use `object-fit: contain` with transparent surroundings to retain all original content and proportions; where the PPT uses a crop, full-image fitting necessarily differs from that crop.
 
 Editable layout data: `src/prototype/production-layouts.js`. Positions are explicit [left, top, width, height] percentages. Dates/credits here are confined to the detail views, preserving the existing cover cards exactly as requested.
 

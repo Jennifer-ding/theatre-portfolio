@@ -146,16 +146,16 @@ export const productionLayouts = {
         "width": 1280,
         "height": 853,
         "position": [
-          31,
-          32,
-          68,
-          67
+          40,
+          43,
+          58,
+          56
         ],
         "mobile": [
-          33,
-          68,
+          24,
           64,
-          30
+          73,
+          33
         ]
       },
       {
@@ -165,15 +165,15 @@ export const productionLayouts = {
         "height": 853,
         "position": [
           2,
-          55,
-          28,
-          44
+          60,
+          33,
+          32
         ],
         "mobile": [
           3,
-          48,
-          38,
-          47
+          41,
+          42,
+          19
         ]
       },
       {
@@ -182,16 +182,16 @@ export const productionLayouts = {
         "width": 1280,
         "height": 853,
         "position": [
-          62,
-          1,
-          37,
-          45
+          63,
+          2,
+          35,
+          34
         ],
         "mobile": [
-          45,
-          43,
-          52,
-          30
+          49,
+          28,
+          48,
+          22
         ]
       }
     ]
@@ -316,18 +316,6 @@ export const productionLayouts = {
           39
         ]
       }
-    ],
-    "missing": [
-      10,
-      22,
-      31,
-      26
-    ],
-    "mobileMissing": [
-      3,
-      34,
-      36,
-      28
     ]
   },
   "lion-king": {
