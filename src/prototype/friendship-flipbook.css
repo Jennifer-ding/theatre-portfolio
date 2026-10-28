@@ -1,0 +1,42 @@
+/* Scoped exclusively to the Friendship Act III manuscript reader. */
+.friendship-script { border-block: 1px solid var(--line); margin-top: 50px; padding: 45px 0; text-align: center; }
+.friendship-script-heading h3 { margin-bottom: 12px; }
+.friendship-script-heading>p:last-child { color: var(--muted); font-size: 12px; }
+.friendship-script button { cursor: pointer; }
+.friendship-script button:focus-visible, .friendship-script a:focus-visible, .friendship-script-stage:focus-visible { outline: 2px solid #d8b665; outline-offset: 5px; }
+.friendship-script-closed { display: flex; flex-direction: column; justify-content: center; gap: 30px; width: min(310px,80%); aspect-ratio: 612/792; margin: 45px auto; padding: 35px 25px; border: 1px solid #9e7ba85e; border-left: 12px solid #34203e; border-radius: 3px 8px 8px 3px; background: linear-gradient(100deg,#2d1937,#47304f 12%,#38223f 14%,#3a2645 95%,#291a32); color: #eee5d5; box-shadow: 10px 15px 30px #100a1680, 4px 3px 0 #c7bbaa, 7px 5px 0 #2c1d32; transform: perspective(1000px) rotateY(-9deg) rotateZ(-2deg); transition: transform .4s,box-shadow .4s; }
+.friendship-script-closed:hover { transform: perspective(1000px) rotateY(-3deg) rotateZ(0deg); }
+.friendship-script-closed strong { font: 400 clamp(28px,4vw,40px)/1.1 'Cormorant Garamond',Georgia,serif; }
+.friendship-script-closed>span { font-size: 10px; letter-spacing: 1.5px; line-height: 1.8; }
+.friendship-script-closed small { font-size: 10px; color: #cfb7d9; }
+.friendship-script-status { color: var(--muted); font-size: 12px; }
+.friendship-script-status:empty { display: none; }
+.friendship-script-stage { width: 100%; max-width: 940px; margin: 30px auto; visibility: hidden; }
+.friendship-script-stage>.stf__parent { min-width: 0 !important; min-height: 0 !important; }
+.friendship-script-stage.is-ready { visibility: visible; }
+.friendship-script-page { background: #fff; overflow: hidden; }
+.friendship-script-page>img { display: block; width: 100%; height: 100%; max-width: none; }
+.friendship-script-hardcover { color: #eee5d5; background: linear-gradient(100deg,#2d1937,#47304f 9%,#38223f 12%,#3a2645); border: 1px solid #9e7ba85e; }
+.friendship-script-hardcover>div { height: 100%; margin: 0 9%; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+.friendship-script-hardcover span { font-size: clamp(8px,1vw,11px); letter-spacing: 2px; }
+.friendship-script-hardcover h4 { font-size: clamp(22px,3vw,45px); line-height: 1.1; margin: 0; }
+.friendship-script-hardcover p { font-size: clamp(10px,1vw,14px); margin: 0; }
+.friendship-script-controls { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+.friendship-script-controls button, .friendship-script-zoom header button { border: 1px solid #ac8ec666; background: #35253f; color: #eee5d5; padding: 12px 16px; min-height: 44px; font: 12px/1.5 'DM Sans',Arial,sans-serif; }
+.friendship-script-controls button:disabled { opacity: .4; cursor: default; }
+.friendship-script-controls span { font-size: 12px; color: #d7c6df; }
+.friendship-script-help { font-size: 11px; color: var(--muted); }
+.friendship-script-original { display: inline-block; margin-top: 20px; font-size: 12px; border-bottom: 1px solid #ac8ec666; padding-bottom: 6px; }
+.friendship-script:fullscreen, .friendship-script.is-expanded { background: #21182c; overflow: auto; padding: 25px max(20px,5vw); border: 0; }
+.friendship-script.is-expanded { position: fixed; inset: 0; z-index: 1000; margin: 0; }
+.friendship-script:fullscreen .friendship-script-stage, .friendship-script.is-expanded .friendship-script-stage { max-width: min(940px,110vh); }
+.friendship-script-zoom { background: #110b18f5; color: #eee5d5; width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; border: 0; margin: 0; padding: 16px; }
+.friendship-script-zoom::backdrop { background: #0b070fdd; }
+.friendship-script-zoom[open] { display: grid; grid-template-rows: auto auto minmax(0,1fr) auto; gap: 12px; }
+.friendship-script-zoom header { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 12px; }
+.friendship-script-zoom .friendship-script-controls { margin: 0; gap: 8px; }
+.friendship-script-zoom-viewport { overflow: auto; min-height: 0; overscroll-behavior: contain; touch-action: pan-x pan-y pinch-zoom; text-align: left; }
+.friendship-script-zoom-viewport canvas { display: block; max-width: none; margin: 0 auto; }
+.friendship-script-zoom>a { font-size: 12px; justify-self: center; padding: 8px; }
+@media(max-width:650px) { .friendship-script { padding-block: 35px; } .friendship-script-controls { gap: 10px; } .friendship-script-controls button { padding: 10px; font-size: 11px; } .friendship-script-zoom { padding: 10px; } }
+@media(prefers-reduced-motion:reduce) { .friendship-script-closed { transition: none; transform: none; } }

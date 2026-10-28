@@ -7,6 +7,7 @@ import { Imagination, Fortitude } from './ArtAndSport';
 import Journey from './Journey';
 import FriendshipEssay from './FriendshipEssay';
 import FriendshipSlides from './FriendshipSlides';
+import FriendshipFlipbook from './FriendshipFlipbook';
 import AwanSlides from './AwanSlides';
 const originals = productions.filter(p => p.original);
 const route = (act, id) => `#/act/${act}${id ? '/' + id : ''}`;
@@ -26,7 +27,7 @@ function ProductionPage({ p, notebook }) { return <>
   <section className="archive-section"><div className="section-top"><p className="eyebrow">01 / The unfolding</p><h3>Scene by scene</h3></div>{p.scenes.length ? p.scenes.map((scene,i) => <Copy key={i} title={scene.title} value={scene.summary}/>) : <Placeholder label="[Scene-by-scene summaries pending. Add one entry per actual scene; scene count and narrative have not been assumed.]"/>}</section>
   <section className="archive-section"><div className="section-top"><p className="eyebrow">02 / The living archive</p><h3>On the stage</h3></div><Gallery photos={p.photos}/></section>
   </>}
-  <section className="script-block"><div><p className="eyebrow">03 / On the page</p><h3>The full script</h3><p>Original manuscript · PDF archive</p></div>{p.script ? <a className="primary-button" href={p.script} target="_blank" rel="noreferrer">Read full script PDF ↗</a> : <Placeholder label="[Full script PDF pending — no manuscript supplied]"/>}</section>
+  {p.id === 'friendship' ? <FriendshipFlipbook/> : <section className="script-block"><div><p className="eyebrow">03 / On the page</p><h3>The full script</h3><p>Original manuscript · PDF archive</p></div>{p.script ? <a className="primary-button" href={p.script} target="_blank" rel="noreferrer">Read full script PDF ↗</a> : <Placeholder label="[Full script PDF pending — no manuscript supplied]"/>}</section>}
   <div className="two-column media-grid"><Media title="Full performance" src={p.fullVideo}/><Media title="Edited short performance" src={p.shortVideo} duration={p.duration}/></div>
   <div className="closing-link"><p className="eyebrow">Continue behind the curtain</p><h3>How did this story find its stage?</h3><a className="primary-button" href={route('IV',p.id)}>Explore My Directorial Approach <span>↗</span></a></div>
   </>}
