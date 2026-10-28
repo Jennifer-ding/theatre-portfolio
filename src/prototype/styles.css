@@ -20,3 +20,8 @@
   .hero-collage { width: 100%; max-width: 520px; justify-self: center; }
   .cover--collage .cover-bottom { margin-top: 10px; }
 }
+
+/* Approved Friendship synopsis/motivation only; the shared two-column mobile layout is retained. */
+.friendship-narrative-intro { gap: clamp(32px, 5vw, 72px); align-items: start; }
+.friendship-narrative-intro .supplied { color: #eee5d5; font-size: 16px; line-height: 1.95; margin-bottom: 0; }
+@media(max-width:650px) { .friendship-narrative-intro { gap: 0; } .friendship-narrative-intro .supplied { font-size: 15px; line-height: 1.9; } }
