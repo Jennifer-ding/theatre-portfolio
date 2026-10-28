@@ -18,7 +18,7 @@
 .chapter-image-grid figcaption { font-size: 9px; color: #bfaec8; line-height: 1.7; margin-top: 10px; }
 .artwork-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .chapter-exhibition { border-left: 2px solid #ac8ec6; padding: 20px 25px; background: #a384b30a; }
-.fortitude-chapter .three-column { grid-template-columns: .8fr 1fr 1.3fr; gap: 30px; border-top: 1px solid var(--line); padding-top: 25px; }
+.fortitude-chapter .three-column { grid-template-columns: 1fr 1.3fr; gap: 30px; border-top: 1px solid var(--line); padding-top: 25px; }
 .fortitude-chapter .three-column>.copy-block { min-width: 0; }
 .fortitude-chapter .three-column .chapter-image-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 .chapter-awards { margin: 0 0 30px; padding-left: 20px; }

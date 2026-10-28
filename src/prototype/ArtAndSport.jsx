@@ -47,18 +47,18 @@ export function Imagination() {
       <section id="fine-art-works"><h4>Fine Art</h4><ArtworkCoverflow photos={images.fineArt} label="Fine Art"/></section>
       <section id="calligraphy-works"><h4>Chinese calligraphy and ink paintings</h4><ArtworkCoverflow photos={images.calligraphy} label="Calligraphy and ink painting"/></section>
     </section>
-    <section className="copy-block"><h3>Exhibitions</h3><p className="chapter-exhibition">{soloExhibition}</p></section>
   </div>;
 }
 
 export function Fortitude() {
+  // Preserve original caption numbers while hiding only the requested photo.
+  const volleyball = images.volleyball.map((photo, index) => ({ ...photo, caption: photo.caption || `Volleyball / ${String(index + 1).padStart(2, '0')}` })).filter(photo => !photo.src.endsWith('/volleyball-02大.jpeg'));
   const teamwork = images.general.filter(photo => photo.src.includes('/teamwork-'));
   const awards = images.general.filter(photo => !photo.src.includes('/teamwork-'));
   return <div className="art-sport-chapter fortitude-chapter">
     <div className="two-column"><section className="copy-block"><h3>Volleyball</h3><p className="chapter-training">{training.volleyball}</p></section><section className="copy-block"><h3>Squash</h3><p className="chapter-training">{training.squash}</p></section></div>
-    <section className="chapter-gallery-section" aria-label="Athletic photography"><h4>Volleyball photography</h4><ImageGallery photos={images.volleyball} label="Volleyball"/><h4>Squash photography</h4><ImageGallery photos={images.squash} label="Squash"/></section>
+    <section className="chapter-gallery-section" aria-label="Athletic photography"><h4>Volleyball photography</h4><ImageGallery photos={volleyball} label="Volleyball"/><h4>Squash photography</h4><ImageGallery photos={images.squash} label="Squash"/></section>
     <div className="three-column">
-      <section className="copy-block"><h3>Training</h3><ul className="chapter-training-list"><li>{training.volleyball}</li><li>{training.squash}</li></ul></section>
       <section className="copy-block"><h3>Teamwork</h3><ImageGallery photos={teamwork} label="Teamwork"/></section>
       <section className="copy-block"><h3>Achievements</h3><ul className="chapter-awards">{athleticAchievements.map(award => <li key={award}>{award}</li>)}</ul><ImageGallery photos={awards} label="Achievements"/></section>
     </div>
