@@ -1,0 +1,48 @@
+/* Isolated Act V exhibition controls; no shared gallery or artwork styles change. */
+.art-coverflow { --art-width: min(34vw, 350px); --art-height: min(54vw, 460px); --art-step: clamp(65px, 13vw, 160px); margin: 30px 0 60px; }
+.art-coverflow-hint { text-align: center; font-size: 10px; letter-spacing: .6px; color: #bca6c7!important; margin: 0 0 15px; padding: 0 15px; }
+.art-coverflow-stage { height: calc(var(--art-height) + 90px); position: relative; perspective: 1100px; overflow: hidden; touch-action: pan-y pinch-zoom; cursor: grab; user-select: none; isolation: isolate; }
+.art-coverflow-stage:focus-visible { outline: 1px solid #b89bc4; outline-offset: 4px; }
+.art-coverflow-stage::after { content: ''; position: absolute; bottom: 35px; left: 8%; right: 8%; height: 1px; background: linear-gradient(90deg, transparent, #ae8fbe44, transparent); pointer-events: none; }
+.art-coverflow-work { position: absolute; left: 50%; top: 20px; width: var(--art-width); height: calc(var(--art-height) + 40px); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 0; padding: 0; background: transparent; color: #dbc7e4; cursor: pointer; transform: translateX(calc(-50% + var(--offset) * var(--art-step) + var(--drag))) translateZ(calc(var(--distance) * -85px)) rotateY(var(--angle)) scale(calc(1 - var(--distance) * .065)); opacity: calc(1 - var(--distance) * .17); transition: transform .48s cubic-bezier(.22,.68,.28,1), opacity .4s; }
+.art-coverflow-work[aria-hidden="true"] { visibility: hidden; pointer-events: none; }
+.art-coverflow-work.is-current { cursor: zoom-in; }
+.art-coverflow-work:focus-visible { outline: 2px solid #d8b665; outline-offset: 5px; }
+.art-coverflow-frame { display: flex; align-items: center; justify-content: center; max-width: 100%; min-height: 0; }
+.art-coverflow-frame img { width: auto; height: auto; max-width: var(--art-width); max-height: var(--art-height); object-fit: contain; display: block; padding: 9px; border: 1px solid #b798c34d; background: #302438; box-shadow: 0 15px 35px #0c07165e; pointer-events: none; }
+.art-coverflow-enlarge { display: block; font: 8px/1.8 Arial,sans-serif; letter-spacing: 1px; padding: 13px 0 0; color: #cdb2d9; }
+.art-coverflow-work:not(.is-current) .art-coverflow-enlarge { visibility: hidden; }
+.art-coverflow-stage.is-dragging, .art-coverflow-stage.is-dragging button { cursor: grabbing; }
+.art-coverflow-stage.is-dragging .art-coverflow-work { transition-duration: .08s; }
+.art-coverflow-controls { display: flex; align-items: center; justify-content: center; gap: 45px; margin-top: 5px; padding: 0 12px; }
+.art-coverflow-controls button, .art-coverflow-lightbox button { min-width: 44px; min-height: 44px; border: 1px solid #b89bc44d; background: #302438; color: #eee5d5; padding: 12px 18px; font: 11px/1.5 Arial,sans-serif; cursor: pointer; }
+.art-coverflow-controls button:hover, .art-coverflow-lightbox button:hover { border-color: #b89bc4; background: #43304e; }
+.art-coverflow button:focus-visible, .art-coverflow-lightbox a:focus-visible { outline: 2px solid #d8b665; outline-offset: 4px; }
+.art-coverflow-caption { min-width: 130px; text-align: center; }
+.art-coverflow-caption>span { font: 10px/1.5 monospace; letter-spacing: 2px; color: #cfb5dc; }
+.art-coverflow-caption p { font: italic 19px/1.5 'Cormorant Garamond',Georgia,serif; margin: 10px 0 0; color: #e0d0e5!important; }
+.art-coverflow-lightbox { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; padding: 18px 25px; background: #19121fec; color: #eee5d5; overflow: auto; }
+.art-coverflow-lightbox::backdrop { background: #110b19; }
+.art-coverflow-lightbox[open] { display: grid; grid-template-rows: auto minmax(0,1fr) auto auto; gap: 12px; }
+.art-lightbox-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; font: 11px/1.5 Arial,sans-serif; }
+.art-lightbox-image { display: flex; align-items: center; justify-content: center; min-height: 0; }
+.art-lightbox-image img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+.art-lightbox-controls { display: flex; justify-content: center; align-items: center; gap: 35px; }
+.art-lightbox-controls a { font-size: 11px; text-decoration: underline; text-underline-offset: 4px; padding: 10px; }
+.art-lightbox-caption { font-size: 10px; text-align: center; color: #c8b3d1!important; margin: 0; line-height: 1.6; }
+@media(max-width:650px) {
+  .art-coverflow { --art-width: 52vw; --art-height: min(80vw, 400px); --art-step: 23vw; margin-block: 25px 45px; }
+  .art-coverflow-stage { perspective: 800px; }
+  .art-coverflow-hint { font-size: 9px; line-height: 1.8; padding-inline: 8px; }
+  .art-coverflow-frame img { padding: 5px; }
+  .art-coverflow-controls { gap: 10px; justify-content: space-between; padding-inline: 2px; }
+  .art-coverflow-controls button { padding: 10px 12px; font-size: 10px; }
+  .art-coverflow-caption { min-width: 80px; }
+  .art-coverflow-caption p { font-size: 16px; }
+  .art-coverflow-enlarge { font-size: 7px; letter-spacing: .5px; }
+  .art-coverflow-lightbox { padding: 12px; }
+  .art-lightbox-controls { gap: 10px; flex-wrap: wrap; }
+  .art-lightbox-controls a { font-size: 10px; order: 3; width: 100%; text-align: center; }
+  .art-lightbox-header { font-size: 10px; }
+}
+@media(prefers-reduced-motion:reduce) { .art-coverflow *, .art-coverflow *::before, .art-coverflow *::after { transition: none!important; animation: none!important; } }

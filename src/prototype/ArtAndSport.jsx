@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { chapterImages as images, training, soloExhibition, athleticAchievements } from './art-sport-content';
 import './art-sport.css';
+import ArtworkCoverflow from './ArtworkCoverflow';
 
 // Native modal supplies focus containment, Escape and return-to-trigger focus.
 function ImageGallery({ photos, label, artwork = false }) {
@@ -43,8 +44,8 @@ export function Imagination() {
     </div>
     <section className="copy-block"><h3>Fine art training background</h3><ul className="chapter-training-list"><li>{training.fineArt}</li><li>{training.calligraphy}</li></ul></section>
     <section className="chapter-gallery-section" aria-labelledby="artwork-heading"><h3 id="artwork-heading">Artwork gallery</h3>
-      <section id="fine-art-works"><h4>Fine Art</h4><ImageGallery photos={images.fineArt} label="Fine Art" artwork/></section>
-      <section id="calligraphy-works"><h4>Chinese calligraphy and ink paintings</h4><ImageGallery photos={images.calligraphy} label="Calligraphy and ink painting" artwork/></section>
+      <section id="fine-art-works"><h4>Fine Art</h4><ArtworkCoverflow photos={images.fineArt} label="Fine Art"/></section>
+      <section id="calligraphy-works"><h4>Chinese calligraphy and ink paintings</h4><ArtworkCoverflow photos={images.calligraphy} label="Calligraphy and ink painting"/></section>
     </section>
     <section className="copy-block"><h3>Exhibitions</h3><p className="chapter-exhibition">{soloExhibition}</p></section>
   </div>;
