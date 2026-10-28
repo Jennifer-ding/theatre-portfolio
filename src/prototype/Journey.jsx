@@ -14,7 +14,12 @@ export default function Journey() {
     if (event.key === 'End') target = journeyItems.length - 1;
     if (target !== undefined) { event.preventDefault(); buttons.current[target]?.focus(); }
   };
-  return <div className="journey-accordion">
+  return <>
+    <figure className="journey-headshot">
+      <div className="journey-headshot-frame"><img src="/images/headshot.JPG" alt="Official portrait of Jennifer Wanjia Ding" width="8192" height="5464"/></div>
+      <figcaption><span className="journey-headshot-name">Jennifer Wanjia Ding</span><span className="journey-headshot-roles">Director · Playwright · Actor · Volleyball Player</span></figcaption>
+    </figure>
+    <div className="journey-accordion">
     {journeyItems.map((item, index) => {
       const open = expanded === item.id;
       const buttonId = `${prefix}-${item.id}-button`;
@@ -30,5 +35,5 @@ export default function Journey() {
         </div>
       </section>;
     })}
-  </div>;
+  </div></>;
 }
