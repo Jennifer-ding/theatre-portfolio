@@ -7,10 +7,10 @@
 .production-slide { position: relative; width: 100%; aspect-ratio: 16 / 9; isolation: isolate; container-type: inline-size; overflow: hidden; background: transparent; }
 .production-slide-title, .production-slide-photo { position: absolute; left: var(--x); top: var(--y); width: var(--w); }
 .production-slide-title { margin: 0; font: 400 4.5cqw/1.04 'Cormorant Garamond',Georgia,serif; letter-spacing: -.025em; color: #eee5d5; text-transform: none; z-index: 5; }
-.slide-normal .production-slide-title { font-size: 5.2cqw; }
+.slide-normal .production-slide-title { font-size: 4.4cqw; }
 .slide-marigolds { aspect-ratio: 16 / 11; }
 .slide-marigolds .production-slide-title { font-size: 4.15cqw; }
-.slide-hamilton .production-slide-title { font-size: 4.45cqw; }
+.slide-hamilton .production-slide-title { font-size: 4.1cqw; }
 .slide-lion-king .production-slide-title { font-size: 4cqw; }
 .production-slide-photo { height: var(--h); border: 0; padding: 0; background: transparent; cursor: zoom-in; display: flex; align-items: center; justify-content: center; z-index: 2; }
 .production-slide-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -47,3 +47,13 @@
   .production-lightbox-caption { font-size: 10px; }
 }
 @media(max-width:600px) and (orientation:landscape) { .production-photo-lightbox { padding: 8px; } .production-photo-lightbox[open] { gap: 6px; } }
+
+/* Intentional editorial lines on these three titles only. */
+.production-editorial-line { display: block; white-space: nowrap; }
+@media(min-width:701px) {
+  .slide-normal .production-slide-title { width: 31%; }
+  .slide-hamilton .production-slide-title { width: 38%; }
+}
+@media(max-width:700px) {
+  .production-editorial-line { white-space: normal; }
+}

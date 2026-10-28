@@ -4,6 +4,11 @@ import './production-collage.css';
 
 const placement = ([x, y, w, h], mobile) => ({ '--x': `${x}%`, '--y': `${y}%`, '--w': `${w}%`, '--h': `${h}%`, '--mx': `${mobile[0]}%`, '--my': `${mobile[1]}%`, '--mw': `${mobile[2]}%`, '--mh': `${mobile[3]}%` });
 const textPlacement = (position, mobile) => placement([...position, 0], [...mobile, 0]);
+const editorialTitleLines = {
+  normal: ['I Just Want to', 'Be Normal'],
+  marigolds: ['The Effect of Gamma Rays on', 'Man-in-the-Moon Marigolds'],
+  hamilton: ['Hamilton:', 'Alexander Hamilton']
+};
 export default function ProductionCollage({ production }) {
   const layout = productionLayouts[production.id];
   const [selected, setSelected] = useState(null);
@@ -29,7 +34,7 @@ export default function ProductionCollage({ production }) {
   return <article className="experience-detail production-collage-detail">
     <div className="production-editorial-meta"><span className="production-archive-label">PRODUCTION ARCHIVE / {String(['normal', 'marigolds', 'hamilton', 'lion-king'].indexOf(production.id) + 1).padStart(2, '0')}</span><div className="production-slide-meta"><p>{layout.date}</p><p>{layout.credits}</p></div></div>
     <div className={`production-slide slide-${production.id}`} aria-label={`${layout.title} — interactive portfolio composition`}>
-      <h2 className="production-slide-title" aria-label={layout.title} style={textPlacement(layout.titlePos, layout.mobileTitle)}>{layout.title}</h2>
+      <h2 className="production-slide-title" aria-label={layout.title} style={textPlacement(layout.titlePos, layout.mobileTitle)}>{editorialTitleLines[production.id] ? editorialTitleLines[production.id].map(line => <span className="production-editorial-line" key={line}>{line}</span>) : layout.title}</h2>
       {layout.photos.map((image, index) => <button type="button" key={image.src} className={`production-slide-photo slide-photo-${index+1}`} style={placement(image.position, image.mobile)} aria-label={`Enlarge ${image.alt}`} aria-haspopup="dialog" onClick={event => { origin.current = event.currentTarget; setSelected(index); }}>
         <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy"/>
       </button>)}
