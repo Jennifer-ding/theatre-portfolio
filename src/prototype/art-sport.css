@@ -1,0 +1,51 @@
+/* Only Acts V and VI use these components and class names. */
+.art-sport-chapter { min-width: 0; }
+.art-sport-chapter p { color: #d4c7d7; }
+.art-sport-chapter .chapter-training { color: var(--cream); font-size: 16px; line-height: 1.8; }
+.chapter-section-link { display: inline-block; font-size: 11px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.chapter-training-list { padding: 22px 22px 22px 40px; border: 1px solid var(--line); margin: 0; }
+.chapter-training-list li { font-size: 14px; line-height: 1.9; color: #d4c7d7; padding-block: 5px; }
+.chapter-gallery-section { margin-block: 45px; }
+.chapter-gallery-section>section { margin-top: 35px; scroll-margin-top: 25px; }
+.chapter-gallery-section h4 { color: #cdb3dc; font-size: 27px; margin: 30px 0 22px; }
+.chapter-image-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; margin-bottom: 40px; }
+.chapter-image-grid figure { margin: 0; min-width: 0; }
+.chapter-image-button { display: block; width: 100%; border: 1px solid var(--line); padding: 9px; background: #302438; color: var(--cream); cursor: zoom-in; position: relative; }
+.chapter-image-button img { display: block; width: 100%; height: auto; }
+.chapter-image-button:hover { border-color: #b494c5; }
+.chapter-image-button:focus-visible { outline: 2px solid #d8b665; outline-offset: 5px; }
+.chapter-image-enlarge { display: block; font-size: 9px; line-height: 1.6; padding: 10px 0 2px; letter-spacing: 1px; color: #c9afd5; }
+.chapter-image-grid figcaption { font-size: 9px; color: #bfaec8; line-height: 1.7; margin-top: 10px; }
+.artwork-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.chapter-exhibition { border-left: 2px solid #ac8ec6; padding: 20px 25px; background: #a384b30a; }
+.fortitude-chapter .three-column { grid-template-columns: .8fr 1fr 1.3fr; gap: 30px; border-top: 1px solid var(--line); padding-top: 25px; }
+.fortitude-chapter .three-column>.copy-block { min-width: 0; }
+.fortitude-chapter .three-column .chapter-image-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.chapter-awards { margin: 0 0 30px; padding-left: 20px; }
+.chapter-awards li { font-size: 12px; line-height: 1.8; color: #d4c7d7; padding: 0 0 18px 5px; }
+.chapter-image-dialog { border: 1px solid #b494c5; padding: 60px 24px 24px; background: #21182c; color: #eee5d5; width: min(1100px, 94vw); max-width: 94vw; max-height: 94dvh; overflow: auto; text-align: center; }
+.chapter-image-dialog::backdrop { background: #100b16ed; }
+.chapter-image-dialog>img { width: auto; height: auto; max-width: 100%; max-height: 72dvh; margin: 0 auto; object-fit: contain; }
+.chapter-image-dialog>p { font-size: 11px; color: #cdb9d7; margin: 20px 0 12px; }
+.chapter-image-dialog>a { font-size: 11px; text-decoration: underline; text-underline-offset: 4px; display: inline-block; padding: 10px; }
+.chapter-dialog-close { position: absolute; top: 12px; right: 15px; min-height: 38px; padding: 8px 16px; cursor: pointer; border: 1px solid #b494c5; background: #302438; color: #eee5d5; font: 12px Arial,sans-serif; }
+.chapter-dialog-close:focus-visible { outline: 2px solid #d8b665; outline-offset: 4px; }
+@media(max-width:1000px) {
+  .artwork-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fortitude-chapter .three-column { grid-template-columns: minmax(0, 1fr); }
+  .fortitude-chapter .three-column .chapter-image-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media(max-width:650px) {
+  .chapter-image-grid, .artwork-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; }
+  .chapter-image-button { padding: 6px; }
+  .chapter-image-enlarge { font-size: 8px; letter-spacing: .5px; }
+  .chapter-image-grid figcaption { font-size: 8px; }
+  .fortitude-chapter .three-column { grid-template-columns: minmax(0, 1fr); }
+  .fortitude-chapter .three-column .chapter-image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chapter-image-dialog { padding: 65px 12px 20px; }
+  .art-sport-chapter .chapter-training { font-size: 15px; }
+  .chapter-awards li { font-size: 13px; }
+}
+@media(max-width:360px) {
+  .chapter-image-grid:not(.artwork-grid), .fortitude-chapter .three-column .chapter-image-grid { grid-template-columns: minmax(0, 1fr); }
+}

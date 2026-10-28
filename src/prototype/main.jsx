@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { acts, productions, personal } from './content';
 import './styles.css';
 import { ExperienceCards, ExperienceDetail } from './Experience';
+import { Imagination, Fortitude } from './ArtAndSport';
 const originals = productions.filter(p => p.original);
 const route = (act, id) => `#/act/${act}${id ? '/' + id : ''}`;
 function Placeholder({ label, text, className = '' }) { return <div className={`placeholder ${className}`}><span className="placeholder-tag">Material to be supplied</span><p>{text || label}</p></div>; }
@@ -30,8 +31,8 @@ case 'I': return <><div className="journey-grid"><div className="portrait">{pers
 case 'II': return <ExperienceCards/>;
 case 'III': return <><div className="featured-note"><span>THE CENTRE OF THE STORY</span><p>Only Jennifer’s two completely original plays are featured here.</p></div><ProductionCards/></>;
 case 'IV': return <><p className="section-intro">Choose a production to enter its comprehensive director’s notebook.</p><ProductionCards act="IV"/></>;
-case 'V': return <><div className="two-column"><Copy title="Paintings" value={personal.painting}/><Copy title="Chinese calligraphy" value={personal.calligraphy}/></div><Copy title="Fine art training background" value={personal.artTraining}/><h3>Artwork gallery</h3><Gallery photos={personal.artworks} label="Original artwork image"/><Copy title="Exhibitions" value={personal.exhibitions}/></>;
-case 'VI': return <><div className="two-column"><Copy title="Volleyball" value={personal.volleyball}/><Copy title="Squash" value={personal.squash}/></div><Gallery photos={personal.athleticPhotos} label="Jennifer’s athletic photography"/><div className="three-column"><Copy title="Training" value={personal.training}/><Copy title="Teamwork" value={personal.teamwork}/><Copy title="Achievements" value={personal.achievements}/></div></>;
+case 'V': return <Imagination/>;
+case 'VI': return <Fortitude/>;
 case 'VII': return <><p className="section-intro">A space for the everyday person, rather than another biography or list of accomplishments.</p><div className="essence-grid">{[['personality','Personality'],['interests','Interests'],['contradictions','Contradictions'],['values','Values'],['observations','Everyday observations']].map(([key,label],i)=><div className="personal-note" key={key}><span className="note-number">0{i+1}</span><Copy title={label} value={personal[key]}/></div>)}</div></>;
 case 'VIII': return <><div className="unwritten"><span aria-hidden="true">?</span><p>THE NEXT ACT IS STILL UNWRITTEN.</p></div><Copy title="Future theatrical questions" value={personal.questions}/><Copy title="Unexplored artistic directions" value={personal.directions}/><Copy title="Potential experiments with technology and performance" value={personal.experiments}/></>;
 default: return null;
