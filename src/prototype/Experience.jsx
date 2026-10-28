@@ -1,6 +1,7 @@
 import React from 'react';
 import { productions } from './content';
 import './experience.css';
+import ProductionCollage from './ProductionCollage';
 
 export function ExperienceCards() {
   return <div className="cards repertoire experience-cards">{productions.map((p, i) => {
@@ -21,10 +22,5 @@ export function ExperienceCards() {
 }
 
 export function ExperienceDetail({ production: p }) {
-  return <article className="experience-detail">
-    <h2>{p.title}</h2>
-    <dl><div><dt>Date / Year</dt><dd>{p.date || '[Date / year to be supplied]'}</dd></div><div><dt>My Role / Credits</dt><dd>{p.credits || '[Role / credits to be supplied]'}</dd></div></dl>
-    <section aria-label="Production Photo Gallery"><h3>Production Photo Gallery</h3><div className="gallery">{p.photos.length ? p.photos.map((photo, i) => <figure key={i}><img src={photo.src} alt={photo.alt} loading="lazy"/>{photo.caption && <figcaption>{photo.caption}</figcaption>}</figure>) : [1, 2, 3].map(n => <div className="placeholder photo" key={n}><span className="placeholder-tag">Material to be supplied</span><p>[{p.title} — authentic production photograph {n} pending]</p></div>)}</div></section>
-    <a className="primary-button" href="#/act/II">Back to Experience</a>
-  </article>;
+  return <ProductionCollage production={p}/>;
 }
