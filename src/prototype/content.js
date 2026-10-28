@@ -16,14 +16,15 @@ export const acts = [
   { id: 'VIII', letter: 'R', name: 'Reimagination', subtitle: 'The Unwritten Act', description: 'Future theatrical questions & potential experiments.' }
 ];
 const notebook = () => ({ origin: '', motivation: '', research: '', direction: '', design: '', reflection: '', outlook: '' });
-const original = (id, title, duration) => ({ id, title, original: true, date: '', credits: '', synopsis: '', motivation: '', scenes: [], photos: [], script: '', fullVideo: '', shortVideo: '', duration, notebook: notebook() });
+const productionPhotos = (filename, title) => [{ src: `/images/experience/${filename}`, alt: `${title} — original production photograph` }];
+const original = (id, title, duration, filename) => ({ id, title, original: true, date: '', credits: '', synopsis: '', motivation: '', scenes: [], photos: productionPhotos(filename, title), script: '', fullVideo: '', shortVideo: '', duration, notebook: notebook() });
 export const productions = [
-  original('a-wan', 'A WAN', 3),
-  { ...original('friendship', 'The Things I Called Friendship', 5), comparisons: [] },
-  { id: 'normal', title: 'I Just Want to Be Normal', date: '', credits: '', photos: [] },
-  { id: 'marigolds', title: 'The Effect of Gamma Rays on Man-in-the-Moon Marigolds', date: '', credits: '', photos: [] },
-  { id: 'hamilton', title: 'Hamilton: Alexander Hamilton', date: '', credits: '', photos: [] },
-  { id: 'lion-king', title: 'The Lion King (Adaptation)', date: '', credits: '', photos: [] }
+  original('a-wan', 'A WAN', 3, 'awan-cover大.jpeg'),
+  { ...original('friendship', 'The Things I Called Friendship', 5, 'friendship-cover大.jpeg'), comparisons: [] },
+  { id: 'normal', title: 'I Just Want to Be Normal', date: '', credits: '', photos: productionPhotos('normal-cover大.jpeg', 'I Just Want to Be Normal') },
+  { id: 'marigolds', title: 'The Effect of Gamma Rays on Man-in-the-Moon Marigolds', date: '', credits: '', photos: productionPhotos('gamma-rays-cover大.jpeg', 'The Effect of Gamma Rays on Man-in-the-Moon Marigolds') },
+  { id: 'hamilton', title: 'Hamilton: Alexander Hamilton', date: '', credits: '', photos: productionPhotos('hamilton-cover大.jpeg', 'Hamilton: Alexander Hamilton') },
+  { id: 'lion-king', title: 'The Lion King (Adaptation)', date: '', credits: '', photos: productionPhotos('lion-king-cover.JPG', 'The Lion King (Adaptation)') }
 ];
 export const personal = {
   introduction: '', biography: '', portrait: '', portraitAlt: '', timeline: [],
